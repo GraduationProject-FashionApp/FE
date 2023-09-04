@@ -1,0 +1,131 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+}
+
+android {
+    namespace 'com.gradu.lookthat'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.gradu.lookthat"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation project(":data")
+    implementation project(":domain")
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    //splash
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta01'
+
+    //권한 보여주기
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
+    // https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // https://github.com/square/okhttp
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+
+    // https://github.com/square/retrofit/tree/master/retrofit-converters/gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+
+    //bottom sheet dialog
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
+
+    //RxJava, RxAndroid
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.5'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    // shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    //okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // round image
+    implementation 'com.joooonho:selectableroundedimageview:1.0.1'
+
+    //coil library
+    implementation("io.coil-kt:coil:2.0.0-rc03")
+
+    //swipe refresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+    //RX Binding 4.0
+    implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
+
+    //keyboard
+    implementation 'androidx.core:core-ktx:1.7.0'
+
+    //DataStore
+    implementation 'androidx.datastore:datastore-preferences:1.0.0'
+    //implementation "androidx.datastore:datastore:1.0.0"
+
+    //implementation  "com.google.protobuf:protobuf-javalite:3.10.0"
+
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.14.3'
+
+    //timer
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
+
+    // 원형 프로필
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // dagger - hilt
+    implementation 'com.google.dagger:hilt-android:2.44.2'
+    kapt 'com.google.dagger:hilt-compiler:2.44.2'
+
+}
