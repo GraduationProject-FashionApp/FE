@@ -14,11 +14,10 @@
     <color name="orange_03">#FFB580</color>
 
     <!-- Gray -->
-    <color name="gray_01">#4F4F4F</color>
-    <color name="gray_02">#8A8A8A</color>
-    <color name="gray_03">#AEAEAE</color>
-    <color name="gray_04">#D9D9D9</color>
-    <color name="gray_05">#E8E8E8</color>
-
+    <color name="gray4F">#4F4F4F</color>
+    <color name="gray8A">#8A8A8A</color>
+    <color name="grayAE">#AEAEAE</color>
+    <color name="grayD9">#D9D9D9</color>
+    <color name="grayE8">#E8E8E8</color>
 
 </resources>
