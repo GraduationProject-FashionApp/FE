@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/fragment_my_toolbar_tv"
+            android:id="@+id/fragment_search_toolbar_tv"
             android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:text="My"
+            android:text="검색"
             android:background="@drawable/bg_underlined_box"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"/>
+
+    <item
+        android:id="@+id/recommendFragment"
+        android:icon="@drawable/ic_recommend"
+        android:title="@string/recommend"/>
+    <item
+        android:id="@+id/communityFragment"
+        android:icon="@drawable/ic_community"
+        android:title="@string/community"/>
+    <item
+        android:id="@+id/closetFragment"
+        android:icon="@drawable/ic_closet"
+        android:title="@string/closet"/>
+    <item
+        android:id="@+id/myFragment"
+        android:icon="@drawable/ic_my"
+        android:title="@string/my"/>
+
+
+
+</menu>
