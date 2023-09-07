@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchFragment">
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.gradu.lookthat.views.search.SearchFragment"
+        android:label="Search" />
+    <fragment
+        android:id="@+id/myFragment"
+        android:name="com.gradu.lookthat.views.my.MyFragment"
+        android:label="Search" />
+    <fragment
+        android:id="@+id/recommendFragment"
+        android:name="com.gradu.lookthat.views.recommend.RecommendFragment"
+        android:label="Search" />
+    <fragment
+        android:id="@+id/closetFragment"
+        android:name="com.gradu.lookthat.views.closet.ClosetFragment"
+        android:label="Search" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.gradu.lookthat.views.community.CommunityFragment"
+        android:label="Search" />
+
+</navigation>
