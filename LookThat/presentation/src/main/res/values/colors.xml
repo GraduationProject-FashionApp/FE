@@ -5,6 +5,20 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#313131</color>
+    <color name="white">#FDFDFD</color>
+    
+    <!-- Theme -->
+    <color name="orange_01">#FF5F00</color>
+    <color name="orange_02">#FF8A40</color>
+    <color name="orange_03">#FFB580</color>
+
+    <!-- Gray -->
+    <color name="gray_01">#4F4F4F</color>
+    <color name="gray_02">#8A8A8A</color>
+    <color name="gray_03">#AEAEAE</color>
+    <color name="gray_04">#D9D9D9</color>
+    <color name="gray_05">#E8E8E8</color>
+
+
 </resources>
