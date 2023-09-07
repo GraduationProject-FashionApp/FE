@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.gradu.lookthat'
+    namespace 'com.gradu.domain'
     compileSdk 33
 
     defaultConfig {

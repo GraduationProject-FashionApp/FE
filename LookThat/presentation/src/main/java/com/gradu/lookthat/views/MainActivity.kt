@@ -8,6 +8,5 @@ import com.gradu.lookthat.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
     override fun initView() {
-        TODO("Not yet implemented")
     }
 }
