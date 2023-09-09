@@ -20,4 +20,6 @@
     <color name="grayD9">#D9D9D9</color>
     <color name="grayE8">#E8E8E8</color>
 
+    <!--Closet Fragment Tab-->
+    <color name="grayD960">#99D9D9D9</color>
 </resources>

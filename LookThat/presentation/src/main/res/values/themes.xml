@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.LookThat" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange_01</item>
+        <item name="colorPrimary">@color/orange_03</item>
         <item name="colorPrimaryVariant">@color/orange_02</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
