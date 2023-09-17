@@ -21,12 +21,12 @@
             android:id="@+id/fragment_search_result_tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/tab_style"
             app:layout_constraintTop_toBottomOf="@id/fragment_search_result_toolbar_tv"/>
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/fragment_search_result_vp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            style="@style/tab_style"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_search_result_tab"/>
 
