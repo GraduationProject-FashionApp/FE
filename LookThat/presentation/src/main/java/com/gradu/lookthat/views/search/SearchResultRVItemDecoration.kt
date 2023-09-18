@@ -1,10 +1,10 @@
-package com.gradu.lookthat.views.closet
+package com.gradu.lookthat.views.search
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ClosetRVItemDecoration(
+class SearchResultRVItemDecoration(
     private val spanCount: Int,
     private val horizontalSpacing: Int,
     private val verticalSpacing: Int,

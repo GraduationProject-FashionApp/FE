@@ -30,13 +30,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap: Bitmap? ->
         bitmap?.let {
             val imageUri = bitmapToFile(it, requireContext())
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(imageUri.toString()))
+            startActivity(
+                Intent(requireContext(), SearchResultActivity::class.java)
+                    .putExtra("uri", imageUri))
         }
     }
     private val selectImageFromGalleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            val action = SearchFragmentDirections.actionSearchFragmentToSearchResultFragment(it.toString()) // Adjust this line based on your Navigation Args and convert URI to String or another suitable format
-            findNavController().navigate(action)
+            startActivity(
+                Intent(requireContext(), SearchResultActivity::class.java)
+                    .putExtra("uri", uri))
         }
     }
 
