@@ -9,12 +9,7 @@
         android:label="Search" >
         <action
             android:id="@+id/action_searchFragment_to_searchResultFragment"
-            app:destination="@id/searchResultFragment" >
-            <argument
-                android:name="imageUri"
-                app:argType="string"
-                android:defaultValue="" />
-        </action>
+            app:destination="@id/searchResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/myFragment"
@@ -35,6 +30,9 @@
     <fragment
         android:id="@+id/searchResultFragment"
         android:name="com.gradu.lookthat.views.search.SearchResultFragment"
-        android:label="SearchResult"/>
-
+        android:label="SearchResult">
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+    </fragment>
 </navigation>

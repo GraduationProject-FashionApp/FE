@@ -1,12 +1,10 @@
 package com.gradu.lookthat.views.search
 
-import android.os.Bundle
+import android.net.Uri
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gradu.lookthat.R
 import com.gradu.lookthat.base.BaseFragment
@@ -23,9 +21,9 @@ class SearchResultFragment : BaseFragment<FragmentSearchResultBinding>(R.layout.
         val uri = Uri.parse(imageUriString)
 
         // Glide를 사용하여 이미지 뷰에 이미지를 로드합니다.
-        Glide.with(this)
+        /*Glide.with(this)
             .load(uri)
-            .into(binding.imageView) // 가정: FragmentSearchResultBinding에 imageView라는 이름의 ImageView가 있습니다.
+            .into(binding) */
     }
 
     private fun initViewPager() {

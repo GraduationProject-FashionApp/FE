@@ -10,7 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:text="검색 결과"
-            android:background="@drawable/bg_underlined_box"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:textColor="@color/black"
