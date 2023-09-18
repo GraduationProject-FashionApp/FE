@@ -24,8 +24,9 @@ class ClosetWholeFragment : BaseFragment<FragmentClosetWholeBinding>(R.layout.fr
             addItemDecoration(
                 ClosetRVItemDecoration(
                     3,
-                    resources.getDimensionPixelSize(R.dimen.fragment_closet_item_horizontal),
-                    resources.getDimensionPixelSize(R.dimen.fragment_closet_item_vertical)
+                    resources.getDimensionPixelSize(R.dimen.horizontal_spacing),
+                    resources.getDimensionPixelSize(R.dimen.vertical_spacing),
+                    resources.getDimensionPixelSize(R.dimen.edge_spacing)
                 )
             )
         }
