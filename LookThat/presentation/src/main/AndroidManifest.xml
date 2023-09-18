@@ -4,6 +4,11 @@
     package="com.gradu.lookthat">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 저장소 권한 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 카메라 권한 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"

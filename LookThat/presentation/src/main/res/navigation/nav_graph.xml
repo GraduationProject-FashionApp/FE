@@ -6,7 +6,11 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.gradu.lookthat.views.search.SearchFragment"
-        android:label="Search" />
+        android:label="Search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchResultFragment"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myFragment"
         android:name="com.gradu.lookthat.views.my.MyFragment"
@@ -14,14 +18,21 @@
     <fragment
         android:id="@+id/recommendFragment"
         android:name="com.gradu.lookthat.views.recommend.RecommendFragment"
-        android:label="Search" />
+        android:label="Recommend" />
     <fragment
         android:id="@+id/closetFragment"
         android:name="com.gradu.lookthat.views.closet.ClosetFragment"
-        android:label="Search" />
+        android:label="Closet" />
     <fragment
         android:id="@+id/communityFragment"
         android:name="com.gradu.lookthat.views.community.CommunityFragment"
-        android:label="Search" />
-
+        android:label="Community" />
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.gradu.lookthat.views.search.SearchResultFragment"
+        android:label="SearchResult">
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+    </fragment>
 </navigation>
