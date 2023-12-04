@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/activity_product_detail_toolbar_tv"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="상세 정보"
+        android:background="@drawable/bg_underlined_box"
+        android:gravity="center"
+        android:paddingStart="16dp"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/activity_product_detail_back_btn_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/activity_product_detail_toolbar_tv"
+        app:layout_constraintBottom_toBottomOf="@id/activity_product_detail_toolbar_tv"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/activity_product_detail_product_img_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/activity_product_detail_toolbar_tv"/>
+    
+    <LinearLayout
+        android:id="@+id/activity_product_detail_info_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintTop_toBottomOf="@id/activity_product_detail_product_img_iv">
+
+        <TextView
+            android:id="@+id/activity_product_detail_brand_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="브랜드명"
+            android:singleLine="true"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/activity_product_detail_product_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[상품 정보]"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/activity_product_detail_price_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="48,000 원"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:layout_marginTop="36dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/activity_product_detail_like_btn_iv"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_gray_btn_radius"
+        android:src="@drawable/selector_like_star"
+        android:padding="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="43dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/activity_product_detail_link_tv"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activity_product_detail_like_btn_iv"
+        app:layout_constraintBottom_toBottomOf="@id/activity_product_detail_like_btn_iv"
+        android:background="@drawable/bg_orange_fill_btn_radius"
+        android:layout_marginHorizontal="16dp"
+        android:text="옷 구매하러 가기"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
