@@ -19,5 +19,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <ImageView
+            android:id="@+id/fragment_my_setting_btn_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="2dp"
+            android:layout_marginEnd="14dp"
+            android:src="@drawable/ic_setting"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/fragment_my_toolbar_tv"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_my_toolbar_tv"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
