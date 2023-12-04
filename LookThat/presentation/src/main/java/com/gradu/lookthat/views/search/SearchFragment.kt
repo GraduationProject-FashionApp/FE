@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -28,18 +29,25 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         }
     }
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap: Bitmap? ->
-        bitmap?.let {
-            val imageUri = bitmapToFile(it, requireContext())
-            startActivity(
-                Intent(requireContext(), SearchResultActivity::class.java)
-                    .putExtra("uri", imageUri))
+        if (bitmap != null) {
+            val imageUri = bitmapToFile(bitmap, requireContext())
+            Log.d("SearchFragment", "takePictureLauncher: $imageUri")
+
+            // 이미지를 SearchResultActivity로 전달
+            startActivity(Intent(requireContext(), SearchResultActivity::class.java)
+                .putExtra("imageUri", imageUri))
+        } else {
+            Log.d("SearchFragment", "takePictureLauncher: Bitmap is null")
         }
     }
+
     private val selectImageFromGalleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
-            startActivity(
-                Intent(requireContext(), SearchResultActivity::class.java)
-                    .putExtra("uri", uri))
+            Log.d("SearchFragment", "selectImageFromGalleryLauncher: $uri")
+
+            // 이미지를 SearchResultActivity로 전달
+            startActivity(Intent(requireContext(), SearchResultActivity::class.java)
+                .putExtra("imageUri", uri))
         }
     }
 
