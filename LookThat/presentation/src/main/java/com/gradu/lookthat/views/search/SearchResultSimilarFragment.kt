@@ -1,5 +1,6 @@
 package com.gradu.lookthat.views.search
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
@@ -11,10 +12,13 @@ import com.gradu.lookthat.base.BaseFragment
 import com.gradu.lookthat.databinding.FragmentSearchResultSimilarBinding
 import com.gradu.lookthat.views.closet.ClosetRVItemDecoration
 import java.io.File
+import java.net.URL
 
 class SearchResultSimilarFragment:
     BaseFragment<FragmentSearchResultSimilarBinding>(R.layout.fragment_search_result_similar) {
     private var imageUri: Uri? = null
+    lateinit var searchResultAdapter : SearchResultRVAdapter
+    lateinit var productUrl: String
     override fun initView() {
         super.initView()
         arguments?.let {
@@ -33,8 +37,27 @@ class SearchResultSimilarFragment:
 
         binding.fragmentSearchResultSimilarRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = SearchResultRVAdapter(items)
+
+            searchResultAdapter = SearchResultRVAdapter(items)
+            searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
+                override fun onItemClick() {
+                    /**
+                     * 동!!!! 나중에 서버랑 연결할때, 받아온 옷 구매 사이트 링크를 productUrl 에 넣어주삼
+                     * 일단 임의로 무신사 넣어둠
+                     **/
+                    productUrl = "https://www.musinsa.com/app/"
+
+                    val intent = Intent(context, SearchProductDetailActivity::class.java)
+                        .putExtra("productUrl", productUrl)
+                    startActivity(intent)
+                }
+
+            })
+
+            adapter = searchResultAdapter
         }
+
+
 
     }
     private fun uploadImageToServer(imageUri: Uri) {

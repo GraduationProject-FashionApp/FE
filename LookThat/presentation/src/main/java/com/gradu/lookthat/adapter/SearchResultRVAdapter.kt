@@ -9,6 +9,16 @@ import com.gradu.lookthat.databinding.ItemFragmentSearchResultBinding
 
 class SearchResultRVAdapter(private val itemList: ArrayList<String>) : RecyclerView.Adapter<SearchResultRVAdapter.ViewHolder>() {
 
+    interface MyItemClickListener{
+        fun onItemClick()
+    }
+
+    private lateinit var myItemClickListener : MyItemClickListener
+
+    fun setMyItemClickListener(itemClickListener : MyItemClickListener){
+        myItemClickListener = itemClickListener
+    }
+
     inner class ViewHolder(private val binding: ItemFragmentSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String) {
         }
@@ -21,6 +31,9 @@ class SearchResultRVAdapter(private val itemList: ArrayList<String>) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(itemList[position])
+        holder.itemView.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount() = itemList.size
