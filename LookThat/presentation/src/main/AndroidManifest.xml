@@ -33,6 +33,9 @@
         </activity>
         <activity android:name=".views.search.SearchResultActivity"
             android:exported="false"/>
+        <activity android:name=".views.search.SearchProductDetailActivity"
+            android:exported="false"/>
+        <activity android:name=".views.search.WebViewActivity"/>
     </application>
 
 </manifest>
