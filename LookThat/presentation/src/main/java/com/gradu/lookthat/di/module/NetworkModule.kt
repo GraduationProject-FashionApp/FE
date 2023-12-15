@@ -1,6 +1,5 @@
 package com.gradu.lookthat.di.module
 
-import com.gradu.lookthat.di.AuthInterceptor
 import com.gradu.lookthat.util.Utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -28,10 +27,6 @@ object NetworkModule {
     @Retention(AnnotationRetention.BINARY)
     annotation class GaramgaebiRetrofit
 
-
-    @Provides
-    @Singleton
-    fun provideAuthInterceptor(authInterceptor: AuthInterceptor) : Interceptor = authInterceptor
 
     @Provides
     @Singleton
@@ -64,10 +59,9 @@ object NetworkModule {
     @Provides
     @Singleton
     @GaramgaebiRetrofit
-    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor, authInterceptor: AuthInterceptor): OkHttpClient =
+    fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(interceptor)
-            .addInterceptor(authInterceptor)
             .build()
 
 

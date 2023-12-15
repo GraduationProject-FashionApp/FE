@@ -1,25 +1,39 @@
 package com.gradu.lookthat.views.search
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gradu.lookthat.R
-import com.gradu.lookthat.adapter.ClosetRVAdapter
 import com.gradu.lookthat.adapter.SearchResultRVAdapter
 import com.gradu.lookthat.base.BaseFragment
 import com.gradu.lookthat.databinding.FragmentSearchResultRecommendBinding
 import com.gradu.lookthat.databinding.FragmentSearchResultSimilarBinding
-import com.gradu.lookthat.views.closet.ClosetRVItemDecoration
-import okhttp3.Callback
+import com.gradu.lookthat.di.MyApplication.Companion.sRetrofit
+import com.gradu.lookthat.views.search.api.APIinterface
+import com.gradu.lookthat.views.search.api.Item
+import com.gradu.lookthat.views.search.api.SearchResponse
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+
 
 class SearchResultRecommendFragment:
     BaseFragment<FragmentSearchResultRecommendBinding>(R.layout.fragment_search_result_recommend) {
     private var imageUri: Uri? = null
+    lateinit var searchResultAdapter : SearchResultRVAdapter
+    lateinit var productUrl: String
     override fun initView() {
         super.initView()
         arguments?.let {
@@ -27,56 +41,79 @@ class SearchResultRecommendFragment:
                 if(Build.VERSION.SDK_INT >= 33) it.getParcelable("imageUri", Uri::class.java)!!
                 else @Suppress("DEPRECATION") it.getParcelable("imageUri") as? Uri!!
         }
-
-        initRecycler()
+        Log.d("imageUri", "$imageUri")
+        getSearchResult()
     }
-    private fun initRecycler() {
-        val items = ArrayList<String>().apply {
-            for (i in 1..50) {
-                add("Item $i")
-            }
-        }
-
+    private fun initRecycler(response: SearchResponse) {
         binding.fragmentSearchResultRecommendRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            adapter = SearchResultRVAdapter(items)
-        }
-    }
-
-    private fun uploadImageToServer(imageUri: Uri) {
-        val file = File(getRealPathFromURI(imageUri)) // URI를 실제 파일 경로로 변환
-        //val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file)
-        //val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
-        // Retrofit을 사용하여 서버로 Multipart 요청 전송
-        //val service = RetrofitClient.createService(ApiService::class.java)
-        //val call = service.uploadImage(body)
-
-        /*call.enqueue(object : Callback<UploadResponse> {
-            override fun onResponse(call: Call<UploadResponse>, response: Response<UploadResponse>) {
-                if (response.isSuccessful) {
-                    // 성공적으로 이미지 업로드 완료
-                    val uploadResponse = response.body()
-                    Log.d("SearchResultSimilarFragment", "Image upload successful: ${uploadResponse?.message}")
-                } else {
-                    // 이미지 업로드 실패
-                    Log.e("SearchResultSimilarFragment", "Image upload failed: ${response.message()}")
+            val dataList = response.topList.plus(response.bottomList)
+            searchResultAdapter = SearchResultRVAdapter(dataList)
+            searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
+                override fun onItemClick(itemList: List<Item>, position: Int) {
+                    val intent = Intent(context, SearchProductDetailActivity::class.java)
+                        .putExtra("purchaseLink", itemList[position].purchaseLink)
+                        .putExtra("image", itemList[position].image)
+                        .putExtra("title", itemList[position].title)
+                        .putExtra("price", itemList[position].price)
+                    startActivity(intent)
                 }
-            }
 
-            override fun onFailure(call: Call<UploadResponse>, t: Throwable) {
-                // 네트워크 오류 또는 예외 처리
-                Log.e("SearchResultSimilarFragment", "Image upload failed: ${t.message}")
-            }
-        })*/
+            })
+
+            adapter = searchResultAdapter
+        }
+
+
+
+    }
+    private fun getSearchResult() {
+        val imgPath = getRealPathFromURI()
+        val file = File(imgPath)
+        val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+        val body = MultipartBody.Part.createFormData("file", file.name, requestBody)
+
+        Log.d("image", "imgPath $imgPath")
+        Log.d("image", "body $body")
+
+        sRetrofit.create(APIinterface::class.java).getSearchResult(body)
+            .enqueue(object : Callback<SearchResponse> {
+                override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                    if (response.isSuccessful) {
+                        // 성공적으로 이미지 업로드 완료
+                        response.body()?.let { initRecycler(it) }
+                        Log.d("getSearchResult", "Image upload successful: ${response.body()}")
+                    } else {
+                        // 이미지 업로드 실패
+                        Log.e("getSearchResult", "Image upload failed: ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
+                    // 네트워크 오류 또는 예외 처리
+                    Log.e("getSearchResult", "Image upload failed: ${t.message}")
+                }
+            })
     }
 
-    private fun getRealPathFromURI(uri: Uri): String {
-        val cursor = context?.contentResolver?.query(uri, null, null, null, null)
-        cursor?.moveToFirst()
-        val columnIndex = cursor?.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-        val filePath = cursor?.getString(columnIndex ?: 0)
-        cursor?.close()
-        return filePath ?: ""
+    private fun getRealPathFromURI(): String {
+        val inputStream = context?.contentResolver?.openInputStream(imageUri!!)
+        val tempFile = createTempFileFromInputStream(inputStream)
+        return tempFile?.absolutePath ?: ""
+    }
+    private fun createTempFileFromInputStream(inputStream: InputStream?): File? {
+        if (inputStream == null) return null
+
+        try {
+            val tempFile = File.createTempFile("temp_image", null)
+            tempFile.deleteOnExit()
+            FileOutputStream(tempFile).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+            return tempFile
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
     }
 }
