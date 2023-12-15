@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gradu.lookthat.databinding.ItemFragmentClosetClothingBinding
 import com.gradu.lookthat.databinding.ItemFragmentSearchResultBinding
 import com.gradu.lookthat.views.search.SearchProductDetailActivity
+import com.gradu.lookthat.views.search.api.Item
 
-class SearchResultRVAdapter(private val itemList: ArrayList<String>) : RecyclerView.Adapter<SearchResultRVAdapter.ViewHolder>() {
+class SearchResultRVAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<SearchResultRVAdapter.ViewHolder>() {
 
     interface MyItemClickListener{
-        fun onItemClick()
+        fun onItemClick(itemList: List<Item>, position: Int)
     }
 
     private lateinit var myItemClickListener : MyItemClickListener
@@ -23,7 +25,13 @@ class SearchResultRVAdapter(private val itemList: ArrayList<String>) : RecyclerV
     }
 
     inner class ViewHolder(private val binding: ItemFragmentSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: String) {
+        fun bind(item: Item) {
+            with(binding) {
+                Glide.with(itemSearchResultIv)
+                    .load(item.image).into(itemSearchResultIv)
+                itemSearchResultTitleTxt.text = item.title
+                itemSearchResultPriceTxt.text = item.price.toString()
+            }
         }
     }
 
@@ -36,7 +44,7 @@ class SearchResultRVAdapter(private val itemList: ArrayList<String>) : RecyclerV
         holder.bind(itemList[position])
         holder.itemView.setOnClickListener {
             Log.d("SearchResultRVAdapter","onBindViewHolder : ItemClick")
-            myItemClickListener.onItemClick()
+            myItemClickListener.onItemClick(itemList, position)
         }
     }
 

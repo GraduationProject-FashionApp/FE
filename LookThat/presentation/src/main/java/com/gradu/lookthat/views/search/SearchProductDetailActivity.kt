@@ -5,16 +5,26 @@ import android.net.Uri
 import android.os.Build
 import android.webkit.WebView
 import androidx.core.os.bundleOf
+import com.bumptech.glide.Glide
 import com.gradu.lookthat.base.BaseActivity
 import com.gradu.lookthat.databinding.ActivityProductDetailBinding
 
 class SearchProductDetailActivity : BaseActivity<ActivityProductDetailBinding>(ActivityProductDetailBinding::inflate) {
-    lateinit var productUrl : String
+    private lateinit var purchaseLink : String
+    private lateinit var image : String
+    private lateinit var title : String
+    private lateinit var price : String
     override fun initView() {
-
-        productUrl = intent.getStringExtra("productUrl")!!
+        purchaseLink = intent.getStringExtra("purchaseLink")!!
+        image = intent.getStringExtra("image")!!
+        title = intent.getStringExtra("title")!!
+        price = intent.getIntExtra("price", 0).toString()
 
         with(binding){
+            activityProductDetailProductTitleTv.text = title
+            Glide.with(this@SearchProductDetailActivity)
+                .load(image).into(activityProductDetailProductImgIv)
+            activityProductDetailPriceTv.text = price
             // 뒤로가기
             activityProductDetailBackBtnIv.setOnClickListener {
                 finish()
@@ -27,7 +37,7 @@ class SearchProductDetailActivity : BaseActivity<ActivityProductDetailBinding>(A
 
             activityProductDetailLinkTv.setOnClickListener {
                 startActivity(Intent(this@SearchProductDetailActivity, WebViewActivity::class.java)
-                    .putExtra("productUrl", productUrl))
+                    .putExtra("purchaseLink", purchaseLink))
             }
         }
 
