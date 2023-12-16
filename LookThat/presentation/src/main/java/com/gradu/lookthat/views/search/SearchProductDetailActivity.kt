@@ -1,7 +1,6 @@
 package com.gradu.lookthat.views.search
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.webkit.WebView
 import androidx.core.os.bundleOf

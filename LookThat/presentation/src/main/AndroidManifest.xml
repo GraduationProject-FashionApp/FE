@@ -37,6 +37,9 @@
         <activity
             android:name=".views.search.SearchProductDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".views.search.LoadingActivity"
+            android:exported="false" />
         <activity android:name=".views.search.WebViewActivity" />
     </application>
 
