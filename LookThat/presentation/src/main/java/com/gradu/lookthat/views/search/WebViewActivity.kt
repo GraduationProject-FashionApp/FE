@@ -5,6 +5,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebViewClient
 import com.gradu.lookthat.base.BaseActivity
 import com.gradu.lookthat.databinding.WebViewBinding
+import java.net.URLEncoder
 
 class WebViewActivity : BaseActivity<WebViewBinding>(WebViewBinding::inflate) {
     override fun initView() {
@@ -12,7 +13,8 @@ class WebViewActivity : BaseActivity<WebViewBinding>(WebViewBinding::inflate) {
         with(binding.webview){
             webViewClient = WebViewClient()
             webChromeClient = WebChromeClient()
-            loadUrl(intent.getStringExtra("productUrl")!!)
+            var purchaseLink = intent.getStringExtra("purchaseLink")!!
+            loadUrl(purchaseLink)
         }
 
     }

@@ -42,4 +42,12 @@
         <item name="tabIndicatorHeight">1dp</item>
         <item name="tabRippleColor">@null</item>
     </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

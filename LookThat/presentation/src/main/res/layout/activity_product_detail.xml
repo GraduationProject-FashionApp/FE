@@ -30,7 +30,8 @@
     <ImageView
         android:id="@+id/activity_product_detail_product_img_iv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="450dp"
+        android:layout_marginHorizontal="25dp"
         app:layout_constraintTop_toBottomOf="@id/activity_product_detail_toolbar_tv"/>
     
     <LinearLayout
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
+        android:paddingBottom="36dp"
         android:layout_marginHorizontal="16dp"
         app:layout_constraintTop_toBottomOf="@id/activity_product_detail_product_img_iv">
 
@@ -69,6 +71,15 @@
             android:singleLine="true"
             android:layout_marginTop="36dp"/>
 
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="36dp">-->
+
+<!--            -->
+<!--            -->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
     </LinearLayout>
 
     <ImageView
@@ -79,7 +90,7 @@
         android:src="@drawable/selector_like_star"
         android:padding="11dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="43dp"
+        android:layout_marginBottom="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
