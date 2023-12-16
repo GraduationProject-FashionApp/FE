@@ -37,7 +37,7 @@ class DialogSearchCheckFragment(val imageUri: Uri) : DialogFragment() {
             // 이미지를 LoadingActivity로 전달
             startActivity(
                 Intent(requireContext(), LoadingActivity::class.java)
-                .putExtra("imageUri", imageUri.toString()))
+                .putExtra("imageUri", imageUri))
             dismiss()
         }
         // Set click event of cancel button
