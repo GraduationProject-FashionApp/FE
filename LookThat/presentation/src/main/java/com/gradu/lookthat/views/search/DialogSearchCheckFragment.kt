@@ -34,9 +34,9 @@ class DialogSearchCheckFragment(val imageUri: Uri) : DialogFragment() {
         Glide.with(fragmentSearchCheckIv).load(imageUri).into(fragmentSearchCheckIv)
 
         fragmentSearchCheckYesBtn.setOnClickListener {
-            // 이미지를 LoadingActivity로 전달
+            // 이미지를 SearchResultActivity로 전달
             startActivity(
-                Intent(requireContext(), LoadingActivity::class.java)
+                Intent(requireContext(), SearchResultActivity::class.java)
                 .putExtra("imageUri", imageUri))
             dismiss()
         }

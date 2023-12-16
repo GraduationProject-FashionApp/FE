@@ -33,6 +33,7 @@ class SearchResultSimilarFragment:
     private var imageUri: Uri? = null
     lateinit var searchResultAdapter : SearchResultRVAdapter
     lateinit var productUrl: String
+    lateinit var loadingDialog : LoadingDialog
     override fun initView() {
         super.initView()
         arguments?.let {
@@ -41,7 +42,9 @@ class SearchResultSimilarFragment:
                 else @Suppress("DEPRECATION") it.getParcelable("imageUri") as? Uri!!
         }
         Log.d("imageUri", "$imageUri")
+        loadingDialog = LoadingDialog(imageUri)
         getSearchResult()
+        isLoading()
     }
     private fun initRecycler(response: SearchResponse) {
         binding.fragmentSearchResultSimilarRv.apply {
@@ -80,7 +83,9 @@ class SearchResultSimilarFragment:
             override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
                 if (response.isSuccessful) {
                     // 성공적으로 이미지 업로드 완료
-                    response.body()?.let { initRecycler(it) }
+                    response.body()?.let {
+                        loadingDialog.dismiss()
+                        initRecycler(it) }
                     Log.d("getSearchResult", "Image upload successful: ${response.body()}")
                 } else {
                     // 이미지 업로드 실패
@@ -114,5 +119,10 @@ class SearchResultSimilarFragment:
             e.printStackTrace()
         }
         return null
+    }
+
+    fun isLoading(){
+        loadingDialog.isCancelable = false
+        loadingDialog.show(parentFragmentManager, "Loading...")
     }
 }

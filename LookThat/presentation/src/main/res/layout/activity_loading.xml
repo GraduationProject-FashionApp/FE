@@ -2,41 +2,56 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/DialogTheme"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:id="@+id/loading_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/big_ll"
+        android:layout_width="600dp"
+        android:layout_height="1000dp"
         android:orientation="vertical"
+        android:background="@color/white"
+        android:gravity="center"
+        android:theme="@style/DialogTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/loading_image_iv"
-            android:layout_width="match_parent"
-            android:layout_height="320dp"/>
-
-        <TextView
-            android:id="@+id/loading_loading_text_tv"
+        <LinearLayout
+            android:id="@+id/loading_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="검색중입니다. \n 잠시만 기다려주세요"
-            android:textSize="28sp"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/grayAE"/>
+            android:orientation="vertical"
+            android:theme="@style/DialogTheme"
+            android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/loading_hanger_spin_iv"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/ic_hanger"
-            android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/loading_image_iv"
+                android:layout_width="match_parent"
+                android:layout_height="310dp"/>
+
+            <TextView
+                android:id="@+id/loading_loading_text_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="검색중입니다. \n 잠시만 기다려주세요"
+                android:textSize="24sp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/grayAE"/>
+
+            <ImageView
+                android:id="@+id/loading_hanger_spin_iv"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_hanger"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
 
     </LinearLayout>
         
