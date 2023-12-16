@@ -12,7 +12,7 @@ class WebViewActivity : BaseActivity<WebViewBinding>(WebViewBinding::inflate) {
         with(binding.webview){
             webViewClient = WebViewClient()
             webChromeClient = WebChromeClient()
-            loadUrl(intent.getStringExtra("productUrl")!!)
+            loadUrl(intent.getStringExtra("purchaseLink")!!)
         }
 
     }
