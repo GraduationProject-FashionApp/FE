@@ -87,7 +87,7 @@
                 android:id="@+id/fragment_search_gallery_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="카메라로 검색하기"
+                android:text="갤러리에서 검색하기"
                 android:fontFamily="@font/spoqa_han_sans_neo_bold"
                 android:textColor="@color/black"
                 android:layout_marginBottom="18dp"
