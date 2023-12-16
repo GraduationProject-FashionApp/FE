@@ -32,10 +32,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         if (bitmap != null) {
             val imageUri = bitmapToFile(bitmap, requireContext())
             Log.d("SearchFragment", "takePictureLauncher: $imageUri")
-
-            // 이미지를 SearchResultActivity로 전달
-            startActivity(Intent(requireContext(), SearchResultActivity::class.java)
-                .putExtra("imageUri", imageUri))
+            checkImageDialog(imageUri)
         } else {
             Log.d("SearchFragment", "takePictureLauncher: Bitmap is null")
         }
@@ -44,10 +41,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     private val selectImageFromGalleryLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             Log.d("SearchFragment", "selectImageFromGalleryLauncher: $uri")
-
-            // 이미지를 SearchResultActivity로 전달
-            startActivity(Intent(requireContext(), SearchResultActivity::class.java)
-                .putExtra("imageUri", uri))
+            checkImageDialog(uri)
         }
     }
 
@@ -71,7 +65,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     private fun openCamera() {
         takePictureLauncher.launch(null)
     }
-    fun openGallery() {
+    private fun openGallery() {
         selectImageFromGalleryLauncher.launch("image/*")
     }
     // 권한 요청
@@ -83,7 +77,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         }
     }
 
-    fun bitmapToFile(bitmap: Bitmap, context: Context): Uri {
+    private fun bitmapToFile(bitmap: Bitmap, context: Context): Uri {
         // 일시적인 파일 이름
         val fileName = "tempImage-${System.currentTimeMillis()}.jpg"
 
@@ -100,4 +94,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
         return Uri.fromFile(imageFile)
     }
+
+    private fun checkImageDialog(imageUri: Uri) {
+        val dialog = DialogSearchCheckFragment(imageUri)
+        dialog.isCancelable = false
+        dialog.show(parentFragmentManager, "DialogSearchCheckFragment")
+    }
+
 }
