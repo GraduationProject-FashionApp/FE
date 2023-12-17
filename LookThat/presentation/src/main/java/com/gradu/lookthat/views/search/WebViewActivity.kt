@@ -13,6 +13,9 @@ class WebViewActivity : BaseActivity<WebViewBinding>(WebViewBinding::inflate) {
         with(binding.webview){
             webViewClient = WebViewClient()
             webChromeClient = WebChromeClient()
+
+            settings.javaScriptEnabled = true
+
             var purchaseLink = intent.getStringExtra("purchaseLink")!!
             loadUrl(purchaseLink)
         }

@@ -19,6 +19,11 @@ class SearchProductDetailActivity : BaseActivity<ActivityProductDetailBinding>(A
         title = intent.getStringExtra("title")!!
         price = intent.getIntExtra("price", 0).toString()
 
+        /*purchaseLink = "https://www.musinsa.com/app/goods/3222963"
+        image = "http://image.msscdn.net/images/goods_img/20230411/3222963/3222963_16817991152687_500.jpg"
+        title = "라이크린넨 바이오 셔츠 ( 6Color )"
+        price = "37800"*/
+
         with(binding){
             activityProductDetailProductTitleTv.text = title
             Glide.with(this@SearchProductDetailActivity)
