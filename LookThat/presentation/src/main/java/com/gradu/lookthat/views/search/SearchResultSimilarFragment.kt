@@ -49,7 +49,7 @@ class SearchResultSimilarFragment:
     private fun initRecycler(response: SearchResponse) {
         binding.fragmentSearchResultSimilarRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            val dataList = response.topList.plus(response.bottomList)
+            val dataList = response.bottomList.plus(response.topList)
             searchResultAdapter = SearchResultRVAdapter(dataList)
             searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
                 override fun onItemClick(itemList: List<Item>, position: Int) {
