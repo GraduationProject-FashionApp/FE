@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.gradu.lookthat.databinding.ItemFragmentClosetClothingBinding
 import com.gradu.lookthat.databinding.ItemFragmentSearchResultBinding
-import com.gradu.lookthat.views.search.SearchProductDetailActivity
+import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.DISCOUNT_PRICE
+import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.TITLE
+import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.URL
 import com.gradu.lookthat.views.search.api.Item
+import com.gradu.lookthat.views.search.api.SearchResponse
 
 class SearchResultRVAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<SearchResultRVAdapter.ViewHolder>() {
 
@@ -28,9 +30,9 @@ class SearchResultRVAdapter(private val itemList: List<Item>) : RecyclerView.Ada
         fun bind(item: Item) {
             with(binding) {
                 Glide.with(itemSearchResultIv)
-                    .load(item.image).into(itemSearchResultIv)
-                itemSearchResultTitleTxt.text = item.title
-                itemSearchResultPriceTxt.text = item.price.toString()
+                    .load(item.data[URL]).into(itemSearchResultIv)
+                itemSearchResultTitleTxt.text = item.data[TITLE]
+                itemSearchResultPriceTxt.text = item.data[DISCOUNT_PRICE]
             }
         }
     }

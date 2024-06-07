@@ -3,21 +3,18 @@ package com.gradu.lookthat.views.search
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.provider.MediaStore
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gradu.lookthat.R
 import com.gradu.lookthat.adapter.SearchResultRVAdapter
 import com.gradu.lookthat.base.BaseFragment
 import com.gradu.lookthat.databinding.FragmentSearchResultSimilarBinding
-import com.gradu.lookthat.di.MyApplication.Companion.sRetrofit
+import com.gradu.lookthat.base.MyApplication.Companion.sRetrofit
 import com.gradu.lookthat.views.search.api.APIinterface
 import com.gradu.lookthat.views.search.api.Item
 import com.gradu.lookthat.views.search.api.SearchResponse
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,18 +43,17 @@ class SearchResultSimilarFragment:
         getSearchResult()
         isLoading()
     }
-    private fun initRecycler(response: SearchResponse) {
+    private fun initRecycler(response: List<Item>) {
         binding.fragmentSearchResultSimilarRv.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
-            val dataList = response.bottomList.plus(response.topList)
-            searchResultAdapter = SearchResultRVAdapter(dataList)
+            searchResultAdapter = SearchResultRVAdapter(response)
             searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
                 override fun onItemClick(itemList: List<Item>, position: Int) {
                     val intent = Intent(context, SearchProductDetailActivity::class.java)
-                        .putExtra("purchaseLink", itemList[position].purchaseLink)
-                        .putExtra("image", itemList[position].image)
-                        .putExtra("title", itemList[position].title)
-                        .putExtra("price", itemList[position].price)
+                        .putExtra("purchaseLink", itemList[position].data[LINK])
+                        .putExtra("image", itemList[position].data[URL])
+                        .putExtra("title", itemList[position].data[TITLE])
+                        .putExtra("price", itemList[position].data[DISCOUNT_PRICE])
                     startActivity(intent)
                 }
 
@@ -73,7 +69,7 @@ class SearchResultSimilarFragment:
         val imgPath = getRealPathFromURI()
         val file = File(imgPath)
         val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("file", file.name, requestBody)
+        val body = MultipartBody.Part.createFormData("multipart_file", file.name, requestBody)
 
         Log.d("image", "imgPath $imgPath")
         Log.d("image", "body $body")
@@ -85,7 +81,7 @@ class SearchResultSimilarFragment:
                     // 성공적으로 이미지 업로드 완료
                     response.body()?.let {
                         loadingDialog.dismiss()
-                        initRecycler(it) }
+                        initRecycler(it.results) }
                     Log.d("getSearchResult", "Image upload successful: ${response.body()}")
                 } else {
                     // 이미지 업로드 실패
@@ -95,7 +91,7 @@ class SearchResultSimilarFragment:
 
             override fun onFailure(call: Call<SearchResponse>, t: Throwable) {
                 // 네트워크 오류 또는 예외 처리
-                Log.e("getSearchResult", "Image upload failed: ${t.message}")
+                Log.e("getSearchResult", "onFailure: ${t.message}")
             }
         })
     }
@@ -124,5 +120,16 @@ class SearchResultSimilarFragment:
     fun isLoading(){
         loadingDialog.isCancelable = false
         loadingDialog.show(parentFragmentManager, "Loading...")
+    }
+
+    companion object {
+        //제품명,가격,할인가격,할인율,사진위치,키워드,구매링크
+        const val TITLE = 0
+        const val PRICE = 1
+        const val DISCOUNT_PRICE = 2
+        const val DISCOUNT_RATE = 3
+        const val URL = 4
+        const val KEYWORD = 5
+        const val LINK = 6
     }
 }

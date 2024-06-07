@@ -10,8 +10,8 @@ import java.io.File
 
 interface APIinterface {
     @Multipart
-    @POST("/test")
+    @POST("/find/")
     fun getSearchResult(
-        @Part file: MultipartBody.Part
+        @Part multipartFile: MultipartBody.Part
     ) : Call<SearchResponse>
 }

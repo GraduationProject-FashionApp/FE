@@ -1,21 +1,9 @@
-package com.gradu.lookthat.di
+package com.gradu.lookthat.base
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Application
-import android.content.Context
 import android.content.SharedPreferences
-import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
-import android.os.Bundle
 import androidx.datastore.preferences.core.*
-import androidx.lifecycle.MutableLiveData
-import com.gradu.lookthat.util.DataStoreUtil
-import com.gradu.lookthat.util.Utils.BASE_URL
+import com.gradu.lookthat.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -64,7 +52,7 @@ class MyApplication : Application() {
         // sRetrofit 이라는 전역변수에 API url, 인터셉터, Gson을 넣어주고 빌드해주는 코드
         // 이 전역변수로 http 요청을 서버로 보내면 됩니다.
         sRetrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.SERVER_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

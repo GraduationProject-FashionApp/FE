@@ -17,6 +17,15 @@ android {
         versionCode 1
         versionName "1.0"
 
+        def serverUrl = project.rootProject.file('local.properties').withInputStream { stream ->
+            new Properties().with { props ->
+                load(stream)
+                return props['SERVER_URL']
+            }
+        }
+        // BuildConfig에 서버 URL을 추가합니다.
+        buildConfigField "String", "SERVER_URL", "\"${serverUrl}\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -31,6 +40,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
         dataBinding true
     }
