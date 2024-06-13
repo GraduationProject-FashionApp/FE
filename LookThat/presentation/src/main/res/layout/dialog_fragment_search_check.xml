@@ -3,7 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_white_search_check_dialog_radius">
+    android:background="@drawable/bg_search_check_dialog_radius">
 
     <ImageView
         android:id="@+id/fragment_search_check_iv"
@@ -23,8 +23,8 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:gravity="center"
-        android:text="검색하시겠습니까?"
-        android:textColor="@color/black"
+        android:text="검색해볼까요?"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_search_check_yes_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
         android:background="@drawable/bg_gray_empty_radius"
         android:fontFamily="@font/spoqa_han_sans_neo_medium"
         android:text="취소"
-        android:textColor="@color/gray8A"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/fragment_search_check_yes_btn"/>

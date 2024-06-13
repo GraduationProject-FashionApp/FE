@@ -1,9 +1,6 @@
-package com.gradu.lookthat.views.search
+package com.gradu.lookthat.views
 
 import android.content.Intent
-import android.os.Build
-import android.webkit.WebView
-import androidx.core.os.bundleOf
 import com.bumptech.glide.Glide
 import com.gradu.lookthat.base.BaseActivity
 import com.gradu.lookthat.databinding.ActivityProductDetailBinding

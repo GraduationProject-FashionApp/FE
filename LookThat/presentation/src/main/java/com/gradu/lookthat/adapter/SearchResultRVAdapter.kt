@@ -1,18 +1,15 @@
 package com.gradu.lookthat.adapter
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gradu.lookthat.databinding.ItemFragmentSearchResultBinding
-import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.DISCOUNT_PRICE
-import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.TITLE
-import com.gradu.lookthat.views.search.SearchResultSimilarFragment.Companion.URL
-import com.gradu.lookthat.views.search.api.Item
-import com.gradu.lookthat.views.search.api.SearchResponse
+import com.gradu.lookthat.views.SearchResultSimilarFragment.Companion.DISCOUNT_PRICE
+import com.gradu.lookthat.views.SearchResultSimilarFragment.Companion.TITLE
+import com.gradu.lookthat.views.SearchResultSimilarFragment.Companion.URL
+import com.gradu.lookthat.views.api.Item
 
 class SearchResultRVAdapter(private val itemList: List<Item>) : RecyclerView.Adapter<SearchResultRVAdapter.ViewHolder>() {
 

@@ -5,7 +5,7 @@
     app:startDestination="@id/searchFragment">
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.gradu.lookthat.views.search.SearchFragment"
+        android:name="com.gradu.lookthat.views.SearchFragment"
         android:label="Search" >
     </fragment>
     <fragment
