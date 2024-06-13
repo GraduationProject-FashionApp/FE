@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/orange_03</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
 
         <!--custom font-family 적용-->

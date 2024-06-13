@@ -1,4 +1,4 @@
-package com.gradu.lookthat.views.search
+package com.gradu.lookthat.views
 
 import android.content.Intent
 import android.graphics.Color

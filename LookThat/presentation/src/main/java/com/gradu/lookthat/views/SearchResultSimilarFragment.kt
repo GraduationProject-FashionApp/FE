@@ -1,4 +1,4 @@
-package com.gradu.lookthat.views.search
+package com.gradu.lookthat.views
 
 import android.content.Intent
 import android.net.Uri
@@ -10,9 +10,9 @@ import com.gradu.lookthat.adapter.SearchResultRVAdapter
 import com.gradu.lookthat.base.BaseFragment
 import com.gradu.lookthat.databinding.FragmentSearchResultSimilarBinding
 import com.gradu.lookthat.base.MyApplication.Companion.sRetrofit
-import com.gradu.lookthat.views.search.api.APIinterface
-import com.gradu.lookthat.views.search.api.Item
-import com.gradu.lookthat.views.search.api.SearchResponse
+import com.gradu.lookthat.views.api.APIinterface
+import com.gradu.lookthat.views.api.Item
+import com.gradu.lookthat.views.api.SearchResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

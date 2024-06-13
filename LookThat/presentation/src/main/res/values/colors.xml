@@ -5,13 +5,15 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#313131</color>
+    <color name="black">#000000</color>
     <color name="white">#FDFDFD</color>
     
     <!-- Theme -->
     <color name="orange_01">#FF5F00</color>
     <color name="orange_02">#FF8A40</color>
     <color name="orange_03">#FFB580</color>
+    <color name="orange">#FF602E</color>
+    <color name="green">#BFF81D</color>
 
     <!-- Gray -->
     <color name="gray4F">#4F4F4F</color>

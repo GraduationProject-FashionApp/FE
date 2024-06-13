@@ -1,4 +1,4 @@
-package com.gradu.lookthat.views.search
+package com.gradu.lookthat.views
 
 import android.util.Log
 import android.webkit.WebChromeClient
