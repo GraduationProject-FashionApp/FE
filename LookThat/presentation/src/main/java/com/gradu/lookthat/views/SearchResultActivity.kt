@@ -31,24 +31,30 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
 
-class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>(ActivitySearchResultBinding::inflate){
+class SearchResultActivity :
+    BaseActivity<ActivitySearchResultBinding>(ActivitySearchResultBinding::inflate) {
     private var imageUri: Uri? = null
-    lateinit var searchResultAdapter : SearchResultRVAdapter
+    lateinit var searchResultAdapter: SearchResultRVAdapter
     lateinit var productUrl: String
-    lateinit var loadingDialog : LoadingDialog
+    lateinit var loadingDialog: LoadingDialog
     override fun initView() {
         imageUri =
-            if(SDK_INT >= 33) intent.getParcelableExtra("imageUri", Uri::class.java)!!
+            if (SDK_INT >= 33) intent.getParcelableExtra("imageUri", Uri::class.java)!!
             else @Suppress("DEPRECATION") intent.getParcelableExtra("imageUri") as? Uri!!
         Log.d("SearchResultActivity", "Image URI: $imageUri")
         loadingDialog = LoadingDialog(imageUri)
         getSearchResult()
         isLoading()
         binding.resultBgImgIv.setColorFilter(Color.parseColor("#96000000"))
+        binding.resultBgImgIv.setImageURI(imageUri)
+        binding.resultPrevIv.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 //        initToolbar()
 //        initViewPager()
     }
-//    private fun initToolbar() {
+
+    //    private fun initToolbar() {
 //        with(binding.toolbar) {
 //            logo = null
 //            navigationIcon = context.getDrawable(R.drawable.ic_back)
@@ -81,28 +87,30 @@ class SearchResultActivity : BaseActivity<ActivitySearchResultBinding>(ActivityS
 //            return fragment
 //        }
 //    }
-private fun initRecycler(response: List<Item>) {
-    binding.resultSimilarRv.apply {
-        layoutManager = GridLayoutManager(this@SearchResultActivity, 2)
-        searchResultAdapter = SearchResultRVAdapter(response)
-        searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
-            override fun onItemClick(itemList: List<Item>, position: Int) {
-                val intent = Intent(context, SearchProductDetailActivity::class.java)
-                    .putExtra("purchaseLink", itemList[position].data[LINK])
-                    .putExtra("image", itemList[position].data[URL])
-                    .putExtra("title", itemList[position].data[TITLE])
-                    .putExtra("price", itemList[position].data[DISCOUNT_PRICE])
-                startActivity(intent)
-            }
+    private fun initRecycler(response: List<Item>) {
+        binding.resultSimilarRv.apply {
+            layoutManager = GridLayoutManager(this@SearchResultActivity, 2)
+            searchResultAdapter = SearchResultRVAdapter(response)
+            searchResultAdapter.setMyItemClickListener(object :
+                SearchResultRVAdapter.MyItemClickListener {
+                override fun onItemClick(itemList: List<Item>, position: Int) {
+                    val intent = Intent(context, SearchProductDetailActivity::class.java)
+                        .putExtra("purchaseLink", itemList[position].data[LINK])
+                        .putExtra("image", itemList[position].data[URL])
+                        .putExtra("title", itemList[position].data[TITLE])
+                        .putExtra("price", itemList[position].data[DISCOUNT_PRICE])
+                    startActivity(intent)
+                }
 
-        })
+            })
 
-        adapter = searchResultAdapter
+            adapter = searchResultAdapter
+        }
+
+        binding.resultCountTextTv.text = "${response.size}"
+
     }
 
-    binding.resultCountTextTv.text = "${response.size}"
-
-}
     private fun getSearchResult() {
         val imgPath = getRealPathFromURI()
         val file = File(imgPath)
@@ -114,12 +122,16 @@ private fun initRecycler(response: List<Item>) {
 
         MyApplication.sRetrofit.create(APIinterface::class.java).getSearchResult(body)
             .enqueue(object : Callback<SearchResponse> {
-                override fun onResponse(call: Call<SearchResponse>, response: Response<SearchResponse>) {
+                override fun onResponse(
+                    call: Call<SearchResponse>,
+                    response: Response<SearchResponse>
+                ) {
                     if (response.isSuccessful) {
                         // 성공적으로 이미지 업로드 완료
                         response.body()?.let {
                             loadingDialog.dismiss()
-                            initRecycler(it.results) }
+                            initRecycler(it.results)
+                        }
                         Log.d("getSearchResult", "Image upload successful: ${response.body()}")
                     } else {
                         // 이미지 업로드 실패
@@ -139,6 +151,7 @@ private fun initRecycler(response: List<Item>) {
         val tempFile = createTempFileFromInputStream(inputStream)
         return tempFile?.absolutePath ?: ""
     }
+
     private fun createTempFileFromInputStream(inputStream: InputStream?): File? {
         if (inputStream == null) return null
 
@@ -155,9 +168,9 @@ private fun initRecycler(response: List<Item>) {
         return null
     }
 
-    fun isLoading(){
-//        loadingDialog.isCancelable = false
-//        loadingDialog.show(parentFragmentManager, "Loading...")
+    fun isLoading() {
+        loadingDialog.isCancelable = false
+        loadingDialog.show(supportFragmentManager, "Loading...")
     }
 
     companion object {
