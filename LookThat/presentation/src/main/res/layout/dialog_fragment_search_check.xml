@@ -7,9 +7,9 @@
 
     <ImageView
         android:id="@+id/fragment_search_check_iv"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_margin="20dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_margin="40dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintBottom_toTopOf="@+id/fragment_search_check_title_tv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,12 +20,12 @@
         android:id="@+id/fragment_search_check_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:gravity="center"
-        android:text="검색해볼까요?"
+        android:text="해당 사진으로 검색할까요?"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_search_check_yes_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
