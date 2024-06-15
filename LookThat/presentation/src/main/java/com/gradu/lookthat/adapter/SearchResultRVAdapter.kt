@@ -29,7 +29,9 @@ class SearchResultRVAdapter(private val itemList: List<Item>) : RecyclerView.Ada
                 Glide.with(itemSearchResultIv)
                     .load(item.data[URL]).into(itemSearchResultIv)
                 itemSearchResultTitleTxt.text = item.data[TITLE]
-                itemSearchResultPriceTxt.text = item.data[DISCOUNT_PRICE]
+                var price = item.data[DISCOUNT_PRICE]
+                price = price.substring(0,price.length-3) + "," + price.substring(price.length-3) + "원"
+                itemSearchResultPriceTxt.text = price
             }
         }
     }
