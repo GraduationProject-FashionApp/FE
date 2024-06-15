@@ -45,7 +45,7 @@ class SearchResultSimilarFragment:
     }
     private fun initRecycler(response: List<Item>) {
         binding.fragmentSearchResultSimilarRv.apply {
-            layoutManager = GridLayoutManager(requireContext(), 3)
+            layoutManager = GridLayoutManager(requireContext(), 2)
             searchResultAdapter = SearchResultRVAdapter(response)
             searchResultAdapter.setMyItemClickListener(object : SearchResultRVAdapter.MyItemClickListener{
                 override fun onItemClick(itemList: List<Item>, position: Int) {
@@ -61,7 +61,6 @@ class SearchResultSimilarFragment:
 
             adapter = searchResultAdapter
         }
-
 
 
     }
